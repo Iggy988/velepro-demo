@@ -150,6 +150,36 @@
   footer a { color:#C9D3EA; text-decoration:none; }
   footer a:hover { color:#fff; }
 
+  /* Full version / contact */
+  .order { display:grid; grid-template-columns:1.1fr 1fr; gap:22px; align-items:stretch; }
+  .order .panel p { color:var(--text-2); margin:0 0 18px; }
+  .order ul { margin:0; padding-left:20px; color:var(--text); font-size:15px; display:grid; gap:6px; }
+  .contacts { display:grid; gap:14px; }
+  .contact { display:flex; align-items:center; gap:16px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; text-decoration:none; transition:box-shadow .2s, border-color .2s; }
+  .contact:hover { border-color:#C7D6F2; box-shadow:0 12px 30px -12px rgba(20,33,61,.18); }
+  .contact .ico { margin:0; flex:none; }
+  .contact small { display:block; color:var(--text-2); font-size:13px; }
+  .contact b { font-size:18px; color:var(--primary); word-break:break-all; }
+
+  /* Download dialog */
+  dialog.dl { border:0; padding:0; border-radius:18px; width:min(560px, calc(100% - 32px)); max-height:calc(100% - 32px); color:var(--text); box-shadow:0 30px 80px -20px rgba(20,33,61,.45); }
+  dialog.dl::backdrop { background:rgba(15,23,42,.55); backdrop-filter:blur(2px); }
+  .dl-head { background:var(--primary); color:#fff; padding:22px 26px; display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+  .dl-head h3 { margin:0; font-size:19px; }
+  .dl-head p { margin:4px 0 0; color:#C9D3EA; font-size:14px; }
+  .dl-x { background:transparent; border:0; color:#C9D3EA; font-size:26px; line-height:1; cursor:pointer; padding:0 4px; }
+  .dl-x:hover { color:#fff; }
+  .dl-body { padding:22px 26px 26px; }
+  .dl-body h4 { margin:0 0 8px; font-size:15px; display:flex; align-items:center; gap:8px; }
+  .dl-body h4 span { background:var(--accent-bg); color:var(--accent); border-radius:6px; padding:1px 8px; font-size:12px; font-weight:700; }
+  .dl-body ol { margin:0 0 18px; padding-left:20px; font-size:14.5px; display:grid; gap:4px; }
+  .dl-body kbd { font:600 13px Inter, sans-serif; background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:1px 7px; white-space:nowrap; }
+  .dl-note { background:var(--success-bg); color:#166534; border-radius:10px; padding:11px 14px; font-size:13.5px; margin-bottom:20px; }
+  .dl-actions { display:flex; gap:12px; flex-wrap:wrap; }
+  .dl-actions .btn { flex:1; justify-content:center; }
+  .dl-started { display:none; margin:14px 0 0; font-size:13.5px; color:var(--text-2); text-align:center; }
+  .dl-started.on { display:block; }
+
   .reveal { opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
   .reveal.in { opacity:1; transform:none; }
   @media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; transition:none; } html { scroll-behavior:auto; } }
@@ -158,6 +188,7 @@
     .features { grid-template-columns:repeat(2, 1fr); }
     .two { grid-template-columns:1fr; }
     .manual { flex-direction:column; align-items:flex-start; }
+    .order { grid-template-columns:1fr; }
   }
   @media (max-width:760px) {
     .nav ul { display:none; }
@@ -187,8 +218,9 @@
       <li><a href="#pregled">Pregled</a></li>
       <li><a href="#uputstvo">Uputstvo</a></li>
       <li><a href="#pitanja">Pitanja</a></li>
+      <li><a href="#kontakt">Puna verzija</a></li>
     </ul>
-    <a class="btn btn-accent" href="#preuzmi">
+    <a class="btn btn-accent js-download" href="https://github.com/Iggy988/velepro-demo/releases/latest/download/VelePRO-Demo-Setup-1.0.0.exe">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
       <span>Preuzmi demo</span>
     </a>
@@ -335,12 +367,46 @@
       <h2>Česta pitanja</h2>
     </div>
     <div class="faq">
-      <details class="reveal"><summary>Da li je demo verzija besplatna?</summary><p>Da. Demo je besplatan i namijenjen je upoznavanju sa programom prije kupovine. Za ponudu za punu verziju nas kontaktirajte.</p></details>
+      <details class="reveal"><summary>Da li je demo verzija besplatna?</summary><p>Da. Demo je besplatan i namijenjen je upoznavanju sa programom prije kupovine. Punu verziju naručujete pozivom na <a href="tel:+38765979046">+387 65 979 046</a> ili mailom na <a href="mailto:idesigne.bubble@gmail.com">idesigne.bubble@gmail.com</a>.</p></details>
       <details class="reveal"><summary>Hoće li se moji unosi sačuvati?</summary><p>Ne. Demo nema bazu podataka: sve što unesete čuva se dok je program otvoren i briše se kad ga zatvorite. Puna verzija trajno čuva podatke, lokalno ili na serveru.</p></details>
       <details class="reveal"><summary>Koji su sistemski zahtjevi?</summary><p>Windows 10 (verzija 2004 ili novija) ili Windows 11, 64-bit. Instalacija zauzima oko 300 MB, a sve što je programu potrebno već je uključeno, pa ne treba ništa dodatno instalirati.</p></details>
       <details class="reveal"><summary>Mogu li dokumente iz demo verzije koristiti u poslovanju?</summary><p>Ne. Dokumenti odštampani ili izvezeni iz demo verzije označeni su kao „DEMO VERZIJA“ i nemaju pravnu ni knjigovodstvenu važnost.</p></details>
       <details class="reveal"><summary>Može li puna verzija raditi na više računara?</summary><p>Može. Bira se pri instalaciji: lokalno na jednom računaru, ili zajednička baza na serveru kojoj pristupa više računara, svaki sa svojim korisničkim nalozima.</p></details>
       <details class="reveal"><summary>Kako da uklonim demo?</summary><p>Preko Postavke → Aplikacije, ili stavke „Deinstaliraj VelePRO Demo“ u Start meniju. Deinstalacija briše i dnevnik rada.</p></details>
+    </div>
+
+  </div>
+</section>
+
+<section id="kontakt" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">Puna verzija</div>
+      <h2>Naručite punu verziju programa</h2>
+      <p class="sub">Svidio vam se demo? Pozovite nas ili pošaljite mail i dobićete ponudu prilagođenu vašoj firmi.</p>
+    </div>
+    <div class="order">
+      <div class="panel reveal">
+        <h3>Šta dobijate u punoj verziji</h3>
+        <p>Sve što ste isprobali u demo verziji, uz trajno čuvanje podataka i rad cijelog tima.</p>
+        <ul>
+          <li>Trajna baza podataka, lokalno ili na serveru</li>
+          <li>Rad na više računara, svaki korisnik sa svojim nalogom i ulogom</li>
+          <li>Automatske rezervne kopije baze</li>
+          <li>Vaši podaci o firmi i logo na fakturama, otpremnicama i narudžbenicama</li>
+          <li>Dokumenti bez oznake „DEMO VERZIJA“</li>
+        </ul>
+      </div>
+      <div class="contacts">
+        <a class="contact reveal" href="tel:+38765979046">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <span><small>Pozovite nas</small><b>+387 65 979 046</b></span>
+        </a>
+        <a class="contact reveal" href="mailto:idesigne.bubble@gmail.com?subject=VelePRO%20ERP%20%E2%80%93%20narud%C5%BEba%20pune%20verzije">
+          <span class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+          <span><small>Pišite nam</small><b>idesigne.bubble@gmail.com</b></span>
+        </a>
+      </div>
     </div>
 
     <div class="final reveal">
@@ -364,12 +430,58 @@
       <a href="https://github.com/Iggy988/velepro-demo/releases/latest/download/VelePRO-Demo-Setup-1.0.0.exe">Preuzmi demo</a>
       <a href="Korisnicko-uputstvo.html" download>Korisničko uputstvo</a>
       <a href="https://github.com/Iggy988/velepro-demo/releases">Sve verzije</a>
+      <a href="tel:+38765979046">+387 65 979 046</a>
+      <a href="mailto:idesigne.bubble@gmail.com">idesigne.bubble@gmail.com</a>
     </nav>
     <span>© 2026 VelePRO ERP</span>
   </div>
 </footer>
 
+<dialog class="dl" id="dl" aria-labelledby="dl-title">
+  <div class="dl-head">
+    <div>
+      <h3 id="dl-title">Prije preuzimanja</h3>
+      <p>Windows ponekad upozorava na programe koje je preuzelo malo ljudi. Ovako ćete ga zaobići.</p>
+    </div>
+    <button class="dl-x" type="button" aria-label="Zatvori" data-close>×</button>
+  </div>
+  <div class="dl-body">
+    <h4><span>1</span>Ako preglednik blokira preuzimanje</h4>
+    <ol>
+      <li><b>Edge:</b> u listi preuzimanja kliknite <kbd>⋯</kbd> pored datoteke, pa <kbd>Zadrži</kbd> (Keep). Ako se pojavi novi prozor, kliknite <kbd>Prikaži više</kbd> → <kbd>Ipak zadrži</kbd> (Keep anyway).</li>
+      <li><b>Chrome:</b> kliknite <kbd>Zadrži</kbd> (Keep) ili <kbd>Ipak preuzmi</kbd> (Download anyway).</li>
+    </ol>
+    <h4><span>2</span>Ako se pojavi „Windows je zaštitio vaš računar“</h4>
+    <ol>
+      <li>Kliknite <kbd>Više informacija</kbd> (More info).</li>
+      <li>Kliknite <kbd>Ipak pokreni</kbd> (Run anyway) i nastavite instalaciju.</li>
+    </ol>
+    <div class="dl-note">Upozorenje se pojavljuje zato što instalacija nije digitalno potpisana. Demo ne šalje podatke na internet i uklanja se preko Postavke → Aplikacije.</div>
+    <div class="dl-actions">
+      <a class="btn btn-primary" id="dl-go" autofocus href="https://github.com/Iggy988/velepro-demo/releases/latest/download/VelePRO-Demo-Setup-1.0.0.exe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+        Preuzmi sada (84 MB)
+      </a>
+      <button class="btn btn-light" type="button" data-close>Zatvori</button>
+    </div>
+    <p class="dl-started" id="dl-started">Preuzimanje je počelo. Ostavite ovaj prozor otvoren dok ne pokrenete instalaciju.</p>
+  </div>
+</dialog>
+
 <script>
+  // Download dialog: download buttons show the Windows warning instructions first
+  const dl = document.getElementById('dl');
+  if (dl && typeof dl.showModal === 'function') {
+    document.querySelectorAll('.js-download').forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('dl-started').classList.remove('on');
+      dl.showModal();
+    }));
+    document.getElementById('dl-go').addEventListener('click', () => document.getElementById('dl-started').classList.add('on'));
+    dl.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => dl.close()));
+    dl.addEventListener('click', e => { if (e.target === dl) dl.close(); });
+  }
+
   // Tour tabs
   const tabs = document.querySelectorAll('.tabs button');
   const img = document.getElementById('tour-img'), cap = document.getElementById('tour-cap'), title = document.getElementById('tour-title');
