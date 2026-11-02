@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VelePRO ERP – Korisničko uputstvo</title>
+<style>
+  :root { --ink:#1b2430; --muted:#5b6675; --line:#e2e6ec; --bg:#ffffff; --soft:#f4f6f9; --accent:#2f6fd6; --navy:#1a2547; --ok:#e6f6ec; --warn:#fff4e0; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.6 "Segoe UI", system-ui, sans-serif; color:var(--ink); background:var(--bg); }
+  .wrap { max-width:920px; margin:0 auto; padding:0 20px 80px; }
+  header.top { background:var(--navy); color:#fff; padding:36px 0 30px; }
+  header.top .wrap { padding-bottom:0; }
+  header.top h1 { margin:0 0 4px; font-size:30px; }
+  header.top p { margin:0; color:#c9d3ea; }
+  nav.toc { background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:16px 22px; margin:28px 0; }
+  nav.toc strong { display:block; margin-bottom:6px; }
+  nav.toc ol { margin:0; padding-left:22px; columns:2; column-gap:32px; }
+  nav.toc a { color:var(--accent); text-decoration:none; }
+  h2 { margin:44px 0 10px; font-size:23px; padding-top:8px; border-top:1px solid var(--line); }
+  h3 { margin:24px 0 6px; font-size:17px; }
+  p, li { max-width:75ch; }
+  code, kbd { font:14px Consolas, monospace; background:var(--soft); border:1px solid var(--line); border-radius:5px; padding:1px 6px; }
+  kbd { box-shadow:0 1px 0 var(--line); }
+  table { border-collapse:collapse; width:100%; margin:12px 0; font-size:15px; }
+  th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top; }
+  th { background:var(--soft); }
+  .note, .warn { border-radius:10px; padding:12px 16px; margin:14px 0; }
+  .note { background:var(--ok); }
+  .warn { background:var(--warn); }
+  .flow { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:12px 0; font-size:15px; }
+  .flow span { background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:5px 12px; }
+  .flow i { color:var(--muted); font-style:normal; }
+  footer { margin-top:50px; color:var(--muted); font-size:14px; border-top:1px solid var(--line); padding-top:14px; }
+  @media print { header.top { background:#fff; color:#000; border-bottom:2px solid #000; } header.top p { color:#333; } nav.toc { display:none; } h2 { break-after:avoid; } .note,.warn,table,.flow { break-inside:avoid; } }
+  @media (max-width:640px) { nav.toc ol { columns:1; } }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>VelePRO ERP</h1>
+  <p>Korisničko uputstvo · verzija 1.0</p>
+</div></header>
+
+<div class="wrap">
+
+<nav class="toc"><strong>Sadržaj</strong>
+<ol>
+  <li><a href="#sta">Šta je VelePRO</a></li>
+  <li><a href="#prijava">Prva prijava</a></li>
+  <li><a href="#priprema">Priprema prije rada</a></li>
+  <li><a href="#snalazenje">Snalaženje u programu</a></li>
+  <li><a href="#nabavka">Nabavka: od narudžbe do isplate</a></li>
+  <li><a href="#prodaja">Prodaja: od narudžbe do uplate</a></li>
+  <li><a href="#fakture">Fakture, storno i uplate</a></li>
+  <li><a href="#lager">Zaliha (Lager)</a></li>
+  <li><a href="#cijene">Cijene i cjenovnici</a></li>
+  <li><a href="#izvjestaji">Izvještaji, štampa i izvoz</a></li>
+  <li><a href="#upozorenja">Upozorenja</a></li>
+  <li><a href="#stariji">Stariji dokumenti</a></li>
+  <li><a href="#korisnici">Korisnici i uloge</a></li>
+  <li><a href="#kopije">Rezervne kopije</a></li>
+  <li><a href="#mreza">Rad na više računara</a></li>
+  <li><a href="#problemi">Kad nešto ne radi</a></li>
+  <li><a href="#precice">Prečice na tastaturi</a></li>
+</ol></nav>
+
+<h2 id="sta">1. Šta je VelePRO</h2>
+<p>VelePRO je program za vođenje veleprodaje: artikli i zaliha, nabavka od dobavljača, prodaja kupcima, izlazne i ulazne fakture, uplate i isplate, izvještaji i upozorenja. Sve je povezano: kad primite robu, zaliha raste; kad isporučite robu, zaliha pada; kad izdate fakturu i evidentirate uplatu, sve kartice i izvještaji se slažu.</p>
+<p>Najvažnije pravilo: <strong>zaliha se mijenja samo dokumentima</strong> (prijem robe, isporuka, storno, korekcija, prenos). Količina se nikad ne upisuje direktno, a svaka promjena ostaje zapisana u historiji.</p>
+
+<h2 id="prijava">2. Prva prijava</h2>
+<p>Prilikom prvog pokretanja program sam napravi bazu podataka, ali <strong>nijedan korisnički nalog</strong>. Umjesto prijave otvara se ekran <strong>Administratorski nalog</strong>: unesite ime, prezime, korisničko ime (bez razmaka), email i lozinku (najmanje 8 znakova i bar jedna cifra), pa se prijavite tim nalogom.</p>
+<div class="warn"><strong>Samo jedan administrator:</strong> u programu može postojati samo jedan administratorski nalog. Svi ostali nalozi dobijaju drugu ulogu (Knjigovođa, Radnik ili uloga koju napravi administrator). Administratorski nalog ne može se obrisati, deaktivirati ni spustiti na drugu ulogu, zato dobro zapamtite njegovu lozinku.</div>
+<ul>
+  <li>Novi nalog može se napraviti odmah na ekranu za prijavu: <strong>Napravite nalog</strong>. Unose se ime, prezime, korisničko ime (bez razmaka), email, <strong>uloga</strong> (sve osim Administrator) i vlastita lozinka (najmanje 8 znakova i bar jedna cifra). Nalog je odmah aktivan; nakon kreiranja prijavite se tim imenom i lozinkom.</li>
+  <li>Opcija <strong>Zapamti korisničko ime</strong> pamti samo ime, nikad lozinku.</li>
+  <li>Poslije <strong>5 pogrešnih unosa</strong> nalog se zaključava na 15 minuta. Administrator ga može odmah otključati (Korisnici i uloge).</li>
+  <li>Ako nema aktivnosti određeno vrijeme, program automatski odjavljuje korisnika (vrijeme podešava administrator, vidi odjeljak 14).</li>
+</ul>
+
+<h2 id="priprema">3. Priprema prije rada</h2>
+<p>Ove korake radi administrator jednom, ovim redom:</p>
+<ol>
+  <li><strong>Profil → Podaci o firmi.</strong> Upišite naziv firme, JIB, PDV broj, adresu, žiro račun i dodajte logo (PNG ili JPG, najviše 1 MB). Ovi podaci se štampaju na fakturama, otpremnicama i narudžbenicama.</li>
+  <li><strong>Profil → Postavke sistema.</strong> Podesite zadanu PDV stopu, da li je dozvoljeno negativno stanje zalihe, automatsku odjavu i folder za rezervne kopije.</li>
+  <li><strong>Šifarnici.</strong> Unesite <em>Kategorije</em>, pa <em>Proizvode</em> (šifra, naziv, jedinica mjere, cijene, PDV, minimalna zaliha, zadani dobavljač).</li>
+  <li><strong>Partneri.</strong> Unesite <em>Dobavljače</em> i <em>Kupce</em> (JIB, adresa, rok plaćanja, kreditni limit, rabat, cjenovnik).</li>
+  <li><strong>Skladišta.</strong> Jedno zadano skladište već postoji; dodajte ostala ako ih imate.</li>
+  <li><strong>Korisnici i uloge.</strong> Napravite naloge za knjigovođu i radnike (odjeljak 13).</li>
+  <li><strong>Početno stanje zalihe.</strong> Najjednostavnije je da ga unesete kao <em>Nabavku</em> (prijem robe). Administrator može koristiti i <em>Korekciju stanja</em> uz obavezan razlog.</li>
+</ol>
+
+<h2 id="snalazenje">4. Snalaženje u programu</h2>
+<ul>
+  <li><strong>Meni s lijeve strane</strong> vodi do svih stranica. Vidite samo ono za šta imate ovlaštenje. Meni se može sklopiti na ikone.</li>
+  <li><strong>Gornja traka:</strong> putanja stranice, globalna pretraga, pomoć, zvonce s upozorenjima i vaš nalog (Profil, Odjava).</li>
+  <li><strong>Globalna pretraga</strong> (<kbd>Ctrl</kbd>+<kbd>F</kbd>) traži proizvode (šifra, naziv, barkod), kupce i dobavljače (naziv, šifra, JIB, grad) i dokumente (broj nabavke, prodaje, fakture i ulazne fakture, ili naziv partnera). Upišite bar dva znaka; mala i velika slova i kvačice nisu bitni (<em>cevap</em> nalazi <em>Ćevap</em>). Rezultati su grupisani, najviše pet po grupi, i nude samo ono što smijete otvoriti. Klik na proizvod ili partnera otvara njegovu listu filtriranu na taj zapis, a klik na dokument otvara sam dokument. Barkod očitan čitačem u polje pretrage odmah pokaže artikal.</li>
+  <li><strong>Liste:</strong> iznad tabele su pretraga i filteri (period, partner, status…). Dupli klik na red otvara zapis, a dugme na kraju reda nudi radnje. Ispod tabele su zbirovi za ono što je trenutno filtrirano.</li>
+  <li><strong>Štampaj</strong> i <strong>Izvoz</strong> na svakoj listi daju tačno ono što vidite na ekranu: filtere, pretragu i vidljive kolone.</li>
+  <li><strong>Čuvanje i osvježavanje</strong> rade u pozadini: dok traju, pokazivač miša je pješčani sat, a prozor se ne zamrzava. Dugme ne treba klikati ponovo; drugi klik se zanemaruje dok prvi ne završi.</li>
+  <li><strong>Početna</strong> pokazuje prihod, broj narudžbi, aktivne proizvode i artikle ispod minimalne zalihe, promet po mjesecima, nedavne narudžbe i dugme <em>Naruči</em> za artikle kojih je malo. Period (danas, 7, 30 ili 90 dana) mijenjate gore desno.</li>
+</ul>
+
+<h2 id="nabavka">5. Nabavka: od narudžbe do isplate</h2>
+<div class="flow"><span>Nacrt</span><i>→</i><span>Naručeno</span><i>→</i><span>Primljeno</span><i>→</i><span>Ulazna faktura</span><i>→</i><span>Isplata</span></div>
+<ol>
+  <li><strong>Nabavka → Nova nabavka.</strong> Izaberite dobavljača i skladište, dodajte stavke (proizvod, količina, nabavna cijena, rabat). <em>Sačuvaj</em> pravi nacrt, koji još nema broj.</li>
+  <li><strong>Naruči</strong> daje dokumentu broj (NAB-godina-broj) i omogućava štampanje narudžbenice (<em>Štampaj narudžbenicu</em>).</li>
+  <li><strong>Primi robu</strong> povećava zalihu. Možete primiti cijelu ili dio količine; ostatak ostaje otvoren (<em>Djelimično primljeno</em>). Pri prijemu se preračunava prosječna nabavna cijena.</li>
+  <li><strong>Ulazne fakture → Nova.</strong> Evidentirajte račun dobavljača (iz primljene nabavke ili ručno, za troškove bez robe). Broj računa dobavljača mora biti jedinstven po dobavljaču, što sprečava dvostruki unos. Možete priložiti sken papirnog računa.</li>
+  <li><strong>Isplate → Nova isplata.</strong> Izaberite dobavljača, upišite iznos i rasporedite ga na otvorene ulazne fakture (dugme <em>Rasporedi automatski</em> pokriva najstarije prvo).</li>
+</ol>
+<p>Ulazna faktura ne mijenja zalihu (ona je porasla pri prijemu). Ona samo bilježi dugovanje i ulazni PDV.</p>
+
+<h2 id="prodaja">6. Prodaja: od narudžbe do uplate</h2>
+<div class="flow"><span>Nacrt</span><i>→</i><span>Potvrđeno</span><i>→</i><span>Isporučeno</span><i>→</i><span>Faktura</span><i>→</i><span>Uplata</span></div>
+<ol>
+  <li><strong>Prodaja → Nova prodaja.</strong> Izaberite kupca i skladište, dodajte stavke. Cijena se popunjava sama (odjeljak 9), a pored količine vidite raspoloživu zalihu.</li>
+  <li><strong>Potvrdi</strong> rezerviše zalihu (fizička količina se još ne mijenja). Ako bi kupac prekoračio kreditni limit, program to javlja i blokira potvrdu.</li>
+  <li><strong>Isporuči</strong> smanjuje zalihu i upisuje nabavnu vrijednost u trenutku prodaje (za razliku u cijeni, RUC). Otpremnicu štampate preko <em>Štampaj otpremnicu</em>.</li>
+  <li><strong>Kreiraj fakturu</strong> pravi fakturu iz isporučene prodaje. Jedna prodaja daje jednu fakturu.</li>
+</ol>
+<p>Prodaju možete <em>otkazati</em> prije isporuke (rezervacija se oslobađa) ili stornirati poslije isporuke (zaliha se vraća).</p>
+
+<h2 id="fakture">7. Fakture, storno i uplate</h2>
+<h3>Izdavanje</h3>
+<p>Fakturu možete napraviti iz prodaje ili ručno (<em>Fakture → Nova faktura</em>). <strong>Izdaj</strong> daje broj (FAK-godina-broj) i računa rok dospijeća iz roka plaćanja kupca. <strong>Izdata faktura se ne mijenja</strong>: ispravke idu kroz storno.</p>
+<p>Štampa i <em>Sačuvaj PDF</em> sadrže logo, podatke firme, PDV rekapitulaciju po stopama i iznos riječima.</p>
+<h3>Storno</h3>
+<p><strong>Storno</strong> pravi novu fakturu s negativnim iznosima, povezanu s originalnom, i vraća zalihu ako je roba bila isporučena. Original ostaje u evidenciji kao stornirana. Filter <em>Bez storniranih</em> na listama sakriva stornirane dokumente.</p>
+<h3>Uplate</h3>
+<ol>
+  <li>Na fakturi kliknite <strong>Evidentiraj uplatu</strong> ili otvorite <strong>Uplate → Nova uplata</strong>.</li>
+  <li>Izaberite kupca: ispod se pojave njegove otvorene fakture. Upišite iznos, a program ga rasporedi na najstarije fakture (možete ručno promijeniti raspored).</li>
+  <li>Status fakture se računa sam: <em>Izdata</em>, <em>Djelimično plaćena</em>, <em>Plaćena</em>, a <em>Dospjela</em> se prikazuje kad je rok prošao i nije plaćena.</li>
+</ol>
+<h3>Avans (preplata)</h3>
+<p>Dio uplate koji nije raspoređen ostaje kao <strong>avans</strong> kupca i umanjuje njegov saldo. Kad kupac sa avansom ima otvorene fakture, u prozoru <em>Nova uplata</em> pojavi se zelena traka <em>„Kupac ima neraspoređen avans…“</em> s dugmetom <strong>Zatvori fakture iz avansa</strong>: najstarije fakture se zatvaraju bez nove uplate. Jednu fakturu možete zatvoriti iz avansa i dugmetom <em>Zatvori iz avansa</em> na samoj fakturi.</p>
+<p>Uplatu može obrisati samo administrator. Brisanje vraća fakture i avans na prethodno stanje.</p>
+
+<h2 id="lager">8. Zaliha (Lager)</h2>
+<ul>
+  <li><strong>Stanje:</strong> količina, rezervisano, raspoloživo (količina − rezervisano), minimalna zaliha i vrijednost po skladištu. Redovi ispod minimuma su označeni.</li>
+  <li><strong>Promjene (kartica):</strong> historija svake promjene: datum, dokument, ulaz, izlaz, stanje poslije i korisnik. <em>Kartica artikla</em> pokazuje sva kretanja jednog proizvoda, i to od početka, bez obzira na period.</li>
+  <li><strong>Korekcija stanja</strong> (samo administrator): razlika nakon popisa, uz obavezan razlog.</li>
+  <li><strong>Prenos</strong> između skladišta: izlaz iz jednog i ulaz u drugo skladište.</li>
+</ul>
+<p>Negativno stanje je zadano zabranjeno. Administrator ga može dozvoliti u Profil → Postavke sistema.</p>
+
+<h2 id="cijene">9. Cijene i cjenovnici</h2>
+<p>Kad dodate proizvod na prodaju ili fakturu, cijena se bira ovim redom:</p>
+<ol>
+  <li>Ako kupac ima aktivan <strong>cjenovnik</strong> (današnji datum je između „Važi od“ i „Važi do“) i proizvod je u njemu, uzima se cijena iz cjenovnika.</li>
+  <li>Inače se uzima standardna prodajna cijena proizvoda.</li>
+  <li>Rabat kupca upisuje se u kolonu Rabat.</li>
+</ol>
+<p>Izabrana cijena se pamti na dokumentu, pa kasnije izmjene cjenovnika ne mijenjaju stare dokumente. Ručnu promjenu cijene ili rabata na stavci može raditi samo ko ima to ovlaštenje (zadano administrator).</p>
+<p>U <strong>Cjenovnici</strong> možete praviti nove, kopirati cjenovnik za sljedeću godinu, povećati sve cijene za određeni postotak i dodijeliti ih kupcima. Kupac ima najviše jedan cjenovnik.</p>
+<p><strong>Štampaj</strong> (na listi cjenovnika ili u otvorenom cjenovniku) otvara pregled za štampu: šifra, proizvod, jedinica mjere, standardna cijena, cijena u cjenovniku i razlika u postocima. Iz otvorenog cjenovnika štampa se ono što je na ekranu, i prije nego što ga sačuvate. Iz pregleda možete štampati ili sačuvati PDF.</p>
+
+<h2 id="izvjestaji">10. Izvještaji, štampa i izvoz</h2>
+<table>
+  <tr><th>Izvještaj</th><th>Šta pokazuje</th></tr>
+  <tr><td>Promet po periodu</td><td>Fakturisani prihod po mjesecima, uz poređenje s istim mjesecom prošle godine</td></tr>
+  <tr><td>Prodaja po kupcima / proizvodima / kategorijama</td><td>Prihod, količina, razlika u cijeni (RUC) i marža</td></tr>
+  <tr><td>Nabavka po dobavljačima</td><td>Vrijednost primljene robe</td></tr>
+  <tr><td>Stanje lagera</td><td>Količina i vrijednost po skladištu</td></tr>
+  <tr><td>Kartica artikla</td><td>Sva kretanja jednog proizvoda</td></tr>
+  <tr><td>Kartica kupca / dobavljača</td><td>Dokumenti, uplate i saldo</td></tr>
+  <tr><td>Nenaplaćena potraživanja</td><td>Otvorene fakture po starosti dospijeća (0–30, 31–60, 61–90, 90+ dana)</td></tr>
+  <tr><td>PDV rekapitulacija</td><td>Izlazni i ulazni PDV po stopama i razlika za uplatu</td></tr>
+</table>
+<p>Svaki izvještaj ima izbor perioda, pregled na ekranu te dugmad za <strong>PDF</strong>, <strong>Excel</strong> i <strong>Štampaj</strong>. Štampa prvo otvara pregled, a tek onda šalje na štampač. Koje izvještaje vidite zavisi od uloge (knjigovođa vidi finansijske, radnik zalihu, prodaju i nabavku).</p>
+
+<h2 id="upozorenja">11. Upozorenja</h2>
+<p>Program sam provjerava stanje pri pokretanju, poslije svakog knjiženja i svakih 15 minuta, i upozorava na: nisko stanje i artikle bez zalihe, dospjele fakture i fakture koje dospijevaju za 3 dana, nabavke koje kasne i ulazne fakture koje dospijevaju ili su dospjele. Broj aktivnih upozorenja vidi se na zvoncu i pored stavke <em>Upozorenja</em>.</p>
+<p>Upozorenje se samo označi kao riješeno kad uzrok nestane. Možete ga i ručno zatvoriti: <strong>Označi kao riješeno</strong> ili <strong>Ignoriši</strong>. Oba izbora uklanjaju upozorenje sa zvonca i iz liste aktivnih, i ono se <strong>ne pojavljuje ponovo</strong> za isti objekat dok uzrok traje (razlika je samo u oznaci u historiji: <em>Riješeno</em> ili <em>Ignorisano</em>). Kad uzrok nestane, a kasnije se ponovi, upozorenje se pojavi kao novo. Za upozorenja o zalihi postoji dugme <em>Naruči</em>.</p>
+
+<h2 id="stariji">12. Stariji dokumenti</h2>
+<p>Da bi program bio brz i kad je dokumenata mnogo, liste dokumenata (nabavke, prodaje, fakture, uplate, isplate, ulazne fakture i promjene lagera) prikazuju <strong>tekuću i prošlu godinu</strong>, plus sve što je još otvoreno (neplaćene fakture, nacrte, nenaručene i neisporučene dokumente).</p>
+<p>Ako postoje stariji dokumenti, iznad tabele se pojavi traka <em>„Prikazani su dokumenti od …“</em> s dugmetom <strong>Prikaži {godina}. godinu</strong>, kojim dodajete još jednu godinu. Dugme <strong>Zadani prikaz</strong> vraća prikaz na tekuću i prošlu godinu. Izvještaji sami učitaju starije dokumente kad izaberete period koji ide dalje unazad (npr. <em>Svi datumi</em>).</p>
+<div class="note">Saldo kupaca i dobavljača, kartice kupca, dobavljača i artikla i grafikon prometa na Početnoj uvijek uzimaju u obzir <strong>cijelu historiju</strong>, bez obzira na ovaj prikaz.</div>
+
+<h2 id="korisnici">13. Korisnici i uloge</h2>
+<p>Ovo vidi samo administrator (<em>Korisnici i uloge</em>). Pregled korisnika, dodavanje, izmjena i brisanje dostupni su i na <em>Početnoj</em>, u kartici <em>Korisnici</em>.</p>
+<ul>
+  <li><strong>Korisnici:</strong> novi nalog, izmjena, resetovanje lozinke (korisnik pri sljedećoj prijavi bira novu), deaktivacija, otključavanje i <strong>brisanje</strong>. Deaktivirani nalog gubi pristup, ali se može ponovo uključiti; obrisan nalog nestaje zauvijek (dokumenti i historija ostaju, ali bez veze s tim korisnikom). Ne može se obrisati nalog s kojim ste prijavljeni, niti administratorski nalog, koji ne može biti ni deaktiviran ni spušten na slabiju ulogu. Uloga Administrator se ne nudi za nove naloge, jer administrator može biti samo jedan.</li>
+  <li><strong>Uloge:</strong> tri su gotove (Administrator, Knjigovođa, Radnik), a administrator može napraviti nove tako što označi šta koja uloga smije po modulima (pregled, dodavanje, izmjena, brisanje i posebna ovlaštenja kao što su storno ili korekcija).</li>
+  <li><strong>Prijave i Audit log:</strong> ko se i kada prijavio, i ko je šta mijenjao na dokumentima i šifarnicima.</li>
+</ul>
+<table>
+  <tr><th>Uloga</th><th>Šta radi</th></tr>
+  <tr><td>Administrator</td><td>Sve: svi moduli, korisnici, podaci o firmi, postavke, rezervne kopije</td></tr>
+  <tr><td>Knjigovođa</td><td>Fakture, uplate, ulazne fakture i isplate, finansijski izvještaji; ostalo samo pregled</td></tr>
+  <tr><td>Radnik</td><td>Nabavka (uključujući prijem), prodaja (uključujući isporuku), prenos zalihe; fakture samo pregled i kreiranje iz prodaje</td></tr>
+</table>
+
+<h2 id="kopije">14. Rezervne kopije</h2>
+<p>Program <strong>sam pravi kopiju baze</strong>: jednom dnevno pri pokretanju, svaki put kad se zatvori i prije nadogradnje na novu verziju. Čuva se posljednjih 30 kopija.</p>
+<p>U <strong>Profil → Postavke sistema</strong> (administrator) birate folder za kopije. Zadani je <code>%LOCALAPPDATA%\VelePRO\backup</code>. <strong>Preporuka:</strong> postavite folder na drugi disk ili mrežni folder i povremeno kopirajte na USB, da kopija preživi kvar računara.</p>
+<ul>
+  <li><strong>Napravi rezervnu kopiju</strong> pravi kopiju odmah.</li>
+  <li><strong>Vrati iz kopije</strong> zamjenjuje sve podatke podacima iz izabrane kopije (<code>.db</code> datoteka). Program se zatim sam ponovo pokrene.</li>
+</ul>
+<div class="warn"><strong>Pažnja:</strong> vraćanjem se gube svi unosi nastali poslije te kopije. Prije vraćanja napravite novu kopiju.</div>
+<p>U načinima rada <strong>Server</strong> i <strong>Server preko API-ja</strong> program ne pravi kopije i ova dugmad se ne prikazuju. Kopije baze pravi Supabase; pregledaju se i vraćaju u Supabase projektu (Database → Backups).</p>
+
+<h2 id="mreza">15. Rad na više računara</h2>
+<p>Pri instalaciji se bira način rada:</p>
+<ul>
+  <li><strong>Lokalno:</strong> jedan računar, baza je na njemu.</li>
+  <li><strong>Server:</strong> svi računari rade na zajedničkoj bazi u Supabase projektu na internetu. Pri instalaciji upišite podatke iz Supabase projekta (Connect → Session pooler): host, port, bazu, korisnika i lozinku. Na svakom računaru se upisuju isti podaci.</li>
+  <li><strong>Server preko API-ja</strong> (preporučeno za više računara): ista zajednička baza, ali računari ne znaju njenu lozinku. Pri instalaciji upišite samo <strong>adresu VelePRO servera</strong> (npr. <code>https://velepro-api.onrender.com</code>); instalacija provjeri da server odgovara. Na računaru ostaje samo ta adresa, a svaki korisnik se prijavljuje svojim nalogom. Lozinku baze zna samo server (podešava je onaj ko održava program).</li>
+</ul>
+<table>
+  <tr><th>Način</th><th>Gdje su podaci</th><th>Šta je upisano na računaru</th></tr>
+  <tr><td>Lokalno</td><td>Na tom računaru</td><td>Putanja do baze</td></tr>
+  <tr><td>Server</td><td>Supabase</td><td>Adresa, korisnik i lozinka baze</td></tr>
+  <tr><td>Server preko API-ja</td><td>Supabase, iza VelePRO servera</td><td>Samo adresa VelePRO servera</td></tr>
+</table>
+<p>Prvi računar koji pokrene program (ili sam VelePRO server) napravi bazu; na ostalim se prijavljujete nalozima koje je napravio administrator. U dnu prozora za prijavu piše na šta je program povezan: <em>Lokalna baza</em>, <em>Supabase server</em> ili <em>VelePRO server</em>. Računari moraju imati pristup internetu. Ako dvoje istovremeno mijenjaju isti dokument, sačuva se izmjena onoga ko je prvi snimio, a drugom program javi da dokument otvori ponovo. Podaci na ekranu se osvježavaju tasterom <kbd>F5</kbd>.</p>
+<p>Način rada se kasnije mijenja ponovnom instalacijom (izaberite drugi način) ili u datoteci <code>appsettings.json</code> u folderu programa. Podaci se pri promjeni s lokalne na serversku bazu ne prenose: nova baza kreće od početka. Prelazak sa <em>Server</em> na <em>Server preko API-ja</em> zadržava sve podatke (baza je ista); ponovna instalacija pri tome briše staru lozinku baze iz <code>appsettings.json</code>.</p>
+
+<h2 id="problemi">16. Kad nešto ne radi</h2>
+<table>
+  <tr><th>Problem</th><th>Šta uraditi</th></tr>
+  <tr><td>„Pogrešno korisničko ime ili lozinka“</td><td>Provjerite Caps Lock. Zaboravljenu lozinku resetuje administrator.</td></tr>
+  <tr><td>„Nalog je privremeno zaključan“</td><td>Pričekajte navedeno vrijeme ili zamolite administratora da otključa nalog.</td></tr>
+  <tr><td>„Nije moguće povezati se sa bazom podataka“</td><td>Kliknite <em>Detalji</em>. U načinu Server provjerite internet vezu, da Supabase projekat nije pauziran i da su host, korisnik i lozinka u <code>appsettings.json</code> ispravni.</td></tr>
+  <tr><td>„Nije moguće povezati se sa VelePRO serverom“</td><td>Provjerite internet vezu i adresu servera u <code>appsettings.json</code> (<code>ApiUrl</code>). U pregledniku otvorite <code>https://&lt;adresa&gt;/health</code>: treba pisati <em>Healthy</em>. Ako se stranica dugo učitava, server se budi (na besplatnom planu spava poslije 15 minuta bez rada) – pričekajte minut i pokrenite program ponovo.</td></tr>
+  <tr><td>„Prijava je istekla“</td><td>Prijava na VelePRO server važi 12 sati. Odjavite se i prijavite ponovo.</td></tr>
+  <tr><td>„Podaci se nisu mogli osvježiti“</td><td>Baza ili server trenutno ne odgovaraju. Unosi koje ste već sačuvali nisu izgubljeni; pokušajte ponovo s <kbd>F5</kbd>.</td></tr>
+  <tr><td>Dugme je sivo ili stranica nedostaje</td><td>Nemate ovlaštenje za tu radnju. Obratite se administratoru.</td></tr>
+  <tr><td>„Dokument je u međuvremenu izmijenio drugi korisnik“</td><td>Zatvorite dokument i otvorite ga ponovo da vidite novu verziju.</td></tr>
+  <tr><td>Nedostaje stariji dokument na listi</td><td>Kliknite <em>Prikaži starije</em> iznad tabele (odjeljak 12).</td></tr>
+  <tr><td>Nešto drugo</td><td>Dnevnik grešaka je u <code>%LOCALAPPDATA%\VelePRO\logs</code> (jedna datoteka po danu). Pošaljite je onome ko održava program.</td></tr>
+</table>
+
+<h2 id="precice">17. Prečice na tastaturi</h2>
+<table>
+  <tr><th>Taster</th><th>Radnja</th></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>Novi zapis na trenutnoj stranici</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Sačuvaj</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>Globalna pretraga</td></tr>
+  <tr><td><kbd>F5</kbd></td><td>Osvježi podatke iz baze</td></tr>
+  <tr><td><kbd>Esc</kbd></td><td>Zatvori panel, meni ili pretragu</td></tr>
+  <tr><td><kbd>Enter</kbd> / dupli klik</td><td>Otvori označeni red</td></tr>
+</table>
+
+<footer>VelePRO ERP 1.0 · Ovo uputstvo se otvara i iz dugmeta <strong>?</strong> u gornjoj traci programa. Za štampu u PDF koristite Ctrl+P u pregledniku.</footer>
+</div>
+</body>
+</html>

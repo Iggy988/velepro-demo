@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VelePRO ERP – Demo verzija</title>
+<meta name="description" content="VelePRO ERP – program za veleprodaju: nabavka, prodaja, fakture, uplate, lager i izvještaji. Preuzmite besplatnu demo verziju za Windows.">
+<meta property="og:title" content="VelePRO ERP – Demo verzija">
+<meta property="og:description" content="Veleprodaja pod kontrolom – od narudžbe do uplate. Preuzmite besplatnu demo verziju za Windows.">
+<meta property="og:image" content="assets/dashboard.png">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary:#14213D; --primary-hover:#223459; --sidebar:#1E2A45; --sidebar-active:#2B3A5C;
+    --accent:#2F6FD6; --accent-bg:#E8F0FC; --logo-blue:#B8CCE4;
+    --bg:#F4F6FA; --card:#FFFFFF; --border:#E4E7EC; --border-subtle:#EEF0F4;
+    --text:#1A2233; --text-2:#6B7280; --text-3:#9CA3AF;
+    --success:#16A34A; --success-bg:#DCFCE7; --warning:#EA7A1A; --warning-bg:#FFEDD5;
+    --radius:14px;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; font:16px/1.6 Inter, "Segoe UI", system-ui, sans-serif; color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; }
+  img { max-width:100%; display:block; }
+  a { color:inherit; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 20px; }
+
+  /* Nav */
+  .nav { position:sticky; top:0; z-index:20; background:var(--primary); border-bottom:1px solid rgba(255,255,255,.06); }
+  .nav .wrap { display:flex; align-items:center; justify-content:space-between; height:68px; gap:20px; }
+  .nav .brand img { height:30px; width:auto; }
+  .nav ul { display:flex; gap:28px; list-style:none; margin:0; padding:0; }
+  .nav ul a { color:#C9D3EA; text-decoration:none; font-size:15px; font-weight:500; transition:color .15s; }
+  .nav ul a:hover { color:#fff; }
+
+  /* Buttons */
+  .btn { display:inline-flex; align-items:center; gap:10px; padding:13px 22px; border-radius:10px; font-weight:600; font-size:15px; text-decoration:none; transition:background .15s, transform .15s, box-shadow .15s; white-space:nowrap; }
+  .btn svg { width:18px; height:18px; flex:none; }
+  .btn:active { transform:translateY(1px); }
+  .btn-primary { background:var(--primary); color:#fff; box-shadow:0 6px 18px rgba(20,33,61,.22); }
+  .btn-primary:hover { background:var(--primary-hover); }
+  .btn-light { background:#fff; color:var(--text); border:1px solid var(--border); }
+  .btn-light:hover { border-color:#CBD2DC; background:#FAFBFC; }
+  .btn-accent { background:var(--accent); color:#fff; padding:10px 18px; font-size:14px; }
+  .btn-accent:hover { background:#2862C0; }
+
+  /* Hero */
+  .hero { text-align:center; padding:84px 0 0; background:
+      radial-gradient(900px 420px at 50% 0%, rgba(47,111,214,.10), transparent 70%), var(--bg); }
+  .badge { display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--border); border-radius:999px; padding:6px 14px; font-size:14px; font-weight:500; color:var(--text); box-shadow:0 1px 2px rgba(16,24,40,.04); }
+  .badge .dot { width:8px; height:8px; border-radius:50%; background:var(--warning); box-shadow:0 0 0 3px var(--warning-bg); }
+  .hero h1 { font-size:clamp(36px, 5.6vw, 62px); line-height:1.08; letter-spacing:-.025em; font-weight:800; margin:26px auto 20px; max-width:880px; color:var(--primary); }
+  .hero h1 span { color:var(--accent); }
+  .hero p.lead { font-size:clamp(17px, 2vw, 19px); color:var(--text-2); max-width:680px; margin:0 auto 34px; }
+  .cta { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .meta { margin-top:16px; font-size:13px; color:var(--text-3); }
+
+  /* Screenshot frame */
+  .shot { margin:60px auto 0; max-width:1120px; position:relative; }
+  .shot::before { content:""; position:absolute; inset:8% 6% -4%; background:radial-gradient(closest-side, rgba(20,33,61,.35), transparent); filter:blur(40px); z-index:0; }
+  .frame { position:relative; z-index:1; background:#fff; border:1px solid var(--border); border-radius:18px; padding:10px; box-shadow:0 30px 80px -20px rgba(20,33,61,.35), 0 8px 24px rgba(20,33,61,.08); }
+  .frame .bar { display:flex; align-items:center; gap:7px; padding:4px 6px 10px; }
+  .frame .bar i { width:11px; height:11px; border-radius:50%; background:#E4E7EC; }
+  .frame .bar span { margin-left:10px; font-size:12px; color:var(--text-3); }
+  .frame img { border-radius:10px; border:1px solid var(--border-subtle); width:100%; height:auto; }
+
+  /* Stats strip */
+  .stats { background:var(--primary); color:#fff; margin-top:-120px; padding:180px 0 56px; }
+  .stats .grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:24px; text-align:center; }
+  .stats b { display:block; font-size:30px; font-weight:800; letter-spacing:-.02em; color:#fff; }
+  .stats small { color:#AEBBD6; font-size:14px; }
+
+  /* Sections */
+  section { padding:96px 0; }
+  .eyebrow { color:var(--accent); font-weight:600; font-size:14px; text-transform:uppercase; letter-spacing:.08em; }
+  h2 { font-size:clamp(28px, 3.6vw, 40px); line-height:1.15; letter-spacing:-.02em; margin:10px 0 14px; color:var(--primary); }
+  .sub { color:var(--text-2); max-width:640px; margin:0; font-size:17px; }
+  .head { text-align:center; margin-bottom:52px; }
+  .head .sub { margin:0 auto; }
+
+  .features { display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px; transition:box-shadow .2s, transform .2s; }
+  .card:hover { box-shadow:0 12px 30px -12px rgba(20,33,61,.18); transform:translateY(-2px); }
+  .ico { width:44px; height:44px; border-radius:11px; display:grid; place-items:center; background:var(--accent-bg); color:var(--accent); margin-bottom:16px; }
+  .ico svg { width:22px; height:22px; }
+  .ico.g { background:var(--success-bg); color:var(--success); }
+  .ico.o { background:var(--warning-bg); color:var(--warning); }
+  .card h3 { margin:0 0 6px; font-size:17px; }
+  .card p { margin:0; color:var(--text-2); font-size:15px; }
+
+  /* Flow */
+  .flowbox { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:36px; margin-top:22px; }
+  .flowrow { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0; }
+  .flowrow .lbl { width:96px; font-weight:600; color:var(--text-2); font-size:14px; }
+  .step { background:var(--bg); border:1px solid var(--border); border-radius:9px; padding:7px 14px; font-size:14px; font-weight:500; }
+  .step.last { background:var(--success-bg); border-color:#BBF7D0; color:#15803D; }
+  .arrow { color:var(--text-3); }
+
+  /* Gallery */
+  .tour { background:#fff; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .tabs { display:inline-flex; background:var(--bg); border:1px solid var(--border); border-radius:11px; padding:4px; gap:4px; margin-bottom:28px; flex-wrap:wrap; justify-content:center; }
+  .tabs button { font:inherit; font-size:14px; font-weight:500; border:0; background:transparent; color:var(--text-2); padding:8px 18px; border-radius:8px; cursor:pointer; }
+  .tabs button[aria-selected="true"] { background:#fff; color:var(--text); box-shadow:0 1px 3px rgba(16,24,40,.12); }
+  .tour .frame { max-width:1040px; margin:0 auto; }
+  .tour .cap { text-align:center; color:var(--text-2); font-size:15px; margin:18px auto 0; max-width:640px; min-height:48px; }
+
+  /* Demo info + steps */
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .panel { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:32px; }
+  .panel h3 { margin:0 0 16px; font-size:20px; color:var(--primary); }
+  .checks { list-style:none; margin:0; padding:0; display:grid; gap:12px; }
+  .checks li { display:flex; gap:12px; color:var(--text); font-size:15px; }
+  .checks svg { flex:none; width:20px; height:20px; color:var(--success); margin-top:2px; }
+  .steps { counter-reset:s; list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+  .steps li { counter-increment:s; display:flex; gap:14px; font-size:15px; }
+  .steps li::before { content:counter(s); flex:none; width:30px; height:30px; border-radius:50%; background:var(--primary); color:#fff; font-weight:700; font-size:14px; display:grid; place-items:center; }
+  .steps b { display:block; }
+  .steps span { color:var(--text-2); }
+  .tip { margin-top:20px; background:var(--warning-bg); border-radius:10px; padding:12px 16px; font-size:14px; color:#9A3412; }
+
+  /* Manual */
+  .manual { display:flex; align-items:center; justify-content:space-between; gap:28px; background:linear-gradient(135deg, var(--primary), var(--sidebar-active)); color:#fff; border-radius:20px; padding:44px; overflow:hidden; position:relative; }
+  .manual::after { content:""; position:absolute; right:-40px; bottom:-60px; width:260px; height:260px; background:url(assets/emblem.png) center/contain no-repeat; opacity:.12; }
+  .manual h2 { color:#fff; margin-top:6px; }
+  .manual p { color:#C9D3EA; margin:0; max-width:560px; }
+  .manual .eyebrow { color:var(--logo-blue); }
+  .manual .actions { display:flex; gap:12px; flex-wrap:wrap; position:relative; z-index:1; }
+  .manual .btn-light { border:0; }
+  .btn-ghost { color:#fff; border:1px solid rgba(255,255,255,.28); }
+  .btn-ghost:hover { background:rgba(255,255,255,.08); }
+
+  /* FAQ */
+  .faq { max-width:820px; margin:0 auto; display:grid; gap:12px; }
+  details { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px 22px; }
+  summary { cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between; gap:16px; }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:"+"; color:var(--text-3); font-size:22px; line-height:1; }
+  details[open] summary::after { content:"–"; }
+  details p { color:var(--text-2); margin:12px 0 0; font-size:15px; }
+
+  /* Final CTA + footer */
+  .final { text-align:center; padding-top:40px; }
+  footer { background:var(--primary); color:#AEBBD6; padding:40px 0; font-size:14px; }
+  footer .wrap { display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  footer img { height:24px; width:auto; }
+  footer nav { display:flex; gap:22px; flex-wrap:wrap; }
+  footer a { color:#C9D3EA; text-decoration:none; }
+  footer a:hover { color:#fff; }
+
+  .reveal { opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; transition:none; } html { scroll-behavior:auto; } }
+
+  @media (max-width:980px) {
+    .features { grid-template-columns:repeat(2, 1fr); }
+    .two { grid-template-columns:1fr; }
+    .manual { flex-direction:column; align-items:flex-start; }
+  }
+  @media (max-width:760px) {
+    .nav ul { display:none; }
+    .nav .btn-accent span { display:none; }
+    .hero { padding-top:56px; }
+    .stats .grid { grid-template-columns:repeat(2, 1fr); }
+    section { padding:68px 0; }
+    .flowrow .lbl { width:100%; }
+    .manual, .panel, .flowbox { padding:26px; }
+  }
+  @media (max-width:520px) {
+    .features { grid-template-columns:1fr; }
+    .cta .btn { width:100%; justify-content:center; }
+    .frame { padding:6px; border-radius:12px; }
+    .frame .bar { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="VelePRO početna"><img src="assets/logo.png" alt="VelePRO" width="1220" height="262"></a>
+    <ul>
+      <li><a href="#mogucnosti">Mogućnosti</a></li>
+      <li><a href="#tok">Kako radi</a></li>
+      <li><a href="#pregled">Pregled</a></li>
+      <li><a href="#uputstvo">Uputstvo</a></li>
+      <li><a href="#pitanja">Pitanja</a></li>
+    </ul>
+    <a class="btn btn-accent" href="#preuzmi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+      <span>Preuzmi demo</span>
+    </a>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <span class="badge"><span class="dot"></span>Besplatna demo verzija · Windows</span>
+    <h1>Veleprodaja pod kontrolom, <span>od narudžbe do uplate</span></h1>
+    <p class="lead">VelePRO ERP povezuje nabavku, prodaju, fakture, uplate i lager u jedan program. Svaki dokument automatski ažurira zalihu, kartice i izvještaje.</p>
+    <div class="cta" id="preuzmi">
+      <a class="btn btn-primary js-download" href="https://github.com/Iggy988/velepro-demo/releases/latest/download/VelePRO-Demo-Setup-1.0.0.exe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+        Preuzmi demo (.exe, 84 MB)
+      </a>
+      <a class="btn btn-light" href="Korisnicko-uputstvo.html" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2Zm0 0A2 2 0 0 0 6 22h12"/><path d="M8 7h6M8 11h6"/></svg>
+        Korisničko uputstvo
+      </a>
+    </div>
+    <div class="meta">Verzija 1.0.0 · Windows 10 / 11 (64-bit) · bez registracije i bez interneta</div>
+
+    <div class="shot reveal">
+      <div class="frame">
+        <div class="bar"><i></i><i></i><i></i><span>VelePRO ERP – Početna</span></div>
+        <img src="assets/dashboard.png" alt="VelePRO dashboard: ukupni prihod, narudžbe, aktivni proizvodi, nisko stanje, grafikon prometa i proizvodi po kategorijama" width="1584" height="921">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="wrap grid">
+    <div><b>8</b><small>povezanih modula</small></div>
+    <div><b>PDF · Excel</b><small>štampa i izvoz svake liste</small></div>
+    <div><b>3 uloge</b><small>administrator, knjigovođa, radnik</small></div>
+    <div><b>1 ili više</b><small>računara, lokalno ili na serveru</small></div>
+  </div>
+</div>
+
+<section id="mogucnosti">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">Mogućnosti</div>
+      <h2>Sve što veleprodaji treba, na jednom mjestu</h2>
+      <p class="sub">Zaliha se mijenja samo dokumentima, a svaka promjena ostaje zapisana u historiji. Zato se kartice, salda i izvještaji uvijek slažu.</p>
+    </div>
+    <div class="features">
+      <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13l5 5v5h-3M3 7v10h2m11-10v10H9"/><circle cx="7" cy="17" r="2"/><circle cx="16" cy="17" r="2"/></svg></div><h3>Nabavka</h3><p>Narudžbenice dobavljačima, djelimičan prijem robe i prosječna nabavna cijena.</p></div>
+      <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11L21 7H6.2"/></svg></div><h3>Prodaja</h3><p>Rezervacija zalihe pri potvrdi, otpremnice i kontrola kreditnog limita kupca.</p></div>
+      <div class="card reveal"><div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div><h3>Fakture i uplate</h3><p>Izdavanje, storno, raspored uplata na najstarije fakture i avansi kupaca.</p></div>
+      <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></div><h3>Lager</h3><p>Stanje po skladištima, kartica artikla, korekcije uz razlog i prenos robe.</p></div>
+      <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></div><h3>Izvještaji</h3><p>Promet, RUC i marža, nenaplaćena potraživanja i PDV rekapitulacija. PDF i Excel.</p></div>
+      <div class="card reveal"><div class="ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><h3>Upozorenja</h3><p>Nisko stanje, dospjele fakture i nabavke koje kasne, uz dugme Naruči.</p></div>
+      <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M16 3.1a4 4 0 0 1 0 7.8M22 21a7 7 0 0 0-4-6.3"/></svg></div><h3>Korisnici i uloge</h3><p>Ovlaštenja po modulima, historija prijava i audit log svih izmjena.</p></div>
+      <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="13" rx="2"/><path d="M8 21h8M12 16v5"/></svg></div><h3>Više računara</h3><p>Lokalna baza ili zajednička baza na serveru, uz automatske rezervne kopije.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="tok" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">Kako radi</div>
+      <h2>Jasan tok svakog dokumenta</h2>
+      <p class="sub">Kad primite robu, zaliha raste. Kad isporučite robu, zaliha pada. Kad evidentirate uplatu, faktura se sama zatvara.</p>
+    </div>
+    <div class="flowbox reveal">
+      <div class="flowrow"><span class="lbl">Nabavka</span><span class="step">Nacrt</span><span class="arrow">→</span><span class="step">Naručeno</span><span class="arrow">→</span><span class="step">Primljeno</span><span class="arrow">→</span><span class="step">Ulazna faktura</span><span class="arrow">→</span><span class="step last">Isplata</span></div>
+      <div class="flowrow"><span class="lbl">Prodaja</span><span class="step">Nacrt</span><span class="arrow">→</span><span class="step">Potvrđeno</span><span class="arrow">→</span><span class="step">Isporučeno</span><span class="arrow">→</span><span class="step">Faktura</span><span class="arrow">→</span><span class="step last">Uplata</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="pregled" class="tour">
+  <div class="wrap" style="text-align:center">
+    <div class="head reveal" style="margin-bottom:28px">
+      <div class="eyebrow">Pregled</div>
+      <h2>Pogledajte program iznutra</h2>
+    </div>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-src="assets/dashboard.png" data-cap="Početna: prihod, narudžbe, artikli ispod minimuma, promet po mjesecima i nedavne narudžbe.">Početna</button>
+      <button role="tab" aria-selected="false" data-src="assets/page-prodaja.png" data-cap="Prodaja: narudžbe i otpremnice kupcima, statusi od nacrta do isporuke i zbirovi filtrirane liste.">Prodaja</button>
+      <button role="tab" aria-selected="false" data-src="assets/page-fakture.png" data-cap="Fakture: osnovica, PDV, plaćeno i preostalo za svaku fakturu, uz filtere po kupcu, periodu i statusu.">Fakture</button>
+      <button role="tab" aria-selected="false" data-src="assets/page-lager.png" data-cap="Lager: količina, rezervisano, raspoloživo i vrijednost po skladištu, uz karticu svake promjene.">Lager</button>
+    </div>
+    <div class="frame reveal">
+      <div class="bar"><i></i><i></i><i></i><span id="tour-title">VelePRO ERP – Početna</span></div>
+      <img id="tour-img" src="assets/dashboard.png" alt="Ekran programa VelePRO" width="1584" height="921" loading="lazy">
+    </div>
+    <p class="cap" id="tour-cap">Početna: prihod, narudžbe, artikli ispod minimuma, promet po mjesecima i nedavne narudžbe.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap two">
+    <div class="panel reveal">
+      <h3>Šta je u demo verziji</h3>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kompletan program sa primjerom podataka izmišljenog preduzeća: artikli, partneri, nabavke, prodaje i fakture.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ulaz jednim klikom, bez naloga i lozinke.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bez baze podataka: unosi se čuvaju dok je program otvoren, a pri svakom pokretanju demo kreće ispočetka.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ne šalje podatke na internet. Na računaru ostaje samo dnevnik rada, koji se briše pri deinstalaciji.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Odštampani i izvezeni dokumenti nose oznaku „DEMO VERZIJA“.</li>
+      </ul>
+    </div>
+    <div class="panel reveal">
+      <h3>Instalacija u tri koraka</h3>
+      <ol class="steps">
+        <li><div><b>Preuzmite instalaciju</b><span>Datoteka VelePRO-Demo-Setup-1.0.0.exe (84 MB).</span></div></li>
+        <li><div><b>Pokrenite instalaciju</b><span>Prihvatite uslove korištenja i završite instalaciju. Prečica se pravi na radnoj površini.</span></div></li>
+        <li><div><b>Kliknite „Pristupite demo verziji“</b><span>Program se otvara na Početnoj, sa svim podacima spremnim za isprobavanje.</span></div></li>
+      </ol>
+      <div class="tip"><strong>Windows SmartScreen:</strong> ako se pojavi poruka „Windows je zaštitio vaš računar“, kliknite <em>Više informacija</em>, pa <em>Ipak pokreni</em>.</div>
+    </div>
+  </div>
+</section>
+
+<section id="uputstvo" style="padding-top:0">
+  <div class="wrap">
+    <div class="manual reveal">
+      <div>
+        <div class="eyebrow">Korisničko uputstvo</div>
+        <h2>Od prve prijave do PDV rekapitulacije</h2>
+        <p>Uputstvo u 17 poglavlja: priprema rada, nabavka, prodaja, fakture i uplate, lager, cjenovnici, izvještaji, korisnici, rezervne kopije i prečice na tastaturi.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-light" href="Korisnicko-uputstvo.html" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+          Preuzmi uputstvo
+        </a>
+        <a class="btn btn-ghost" href="Korisnicko-uputstvo.html" target="_blank" rel="noopener">Otvori u pregledniku</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pitanja" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">Pitanja</div>
+      <h2>Česta pitanja</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>Da li je demo verzija besplatna?</summary><p>Da. Demo je besplatan i namijenjen je upoznavanju sa programom prije kupovine. Za ponudu za punu verziju nas kontaktirajte.</p></details>
+      <details class="reveal"><summary>Hoće li se moji unosi sačuvati?</summary><p>Ne. Demo nema bazu podataka: sve što unesete čuva se dok je program otvoren i briše se kad ga zatvorite. Puna verzija trajno čuva podatke, lokalno ili na serveru.</p></details>
+      <details class="reveal"><summary>Koji su sistemski zahtjevi?</summary><p>Windows 10 (verzija 2004 ili novija) ili Windows 11, 64-bit. Instalacija zauzima oko 300 MB, a sve što je programu potrebno već je uključeno, pa ne treba ništa dodatno instalirati.</p></details>
+      <details class="reveal"><summary>Mogu li dokumente iz demo verzije koristiti u poslovanju?</summary><p>Ne. Dokumenti odštampani ili izvezeni iz demo verzije označeni su kao „DEMO VERZIJA“ i nemaju pravnu ni knjigovodstvenu važnost.</p></details>
+      <details class="reveal"><summary>Može li puna verzija raditi na više računara?</summary><p>Može. Bira se pri instalaciji: lokalno na jednom računaru, ili zajednička baza na serveru kojoj pristupa više računara, svaki sa svojim korisničkim nalozima.</p></details>
+      <details class="reveal"><summary>Kako da uklonim demo?</summary><p>Preko Postavke → Aplikacije, ili stavke „Deinstaliraj VelePRO Demo“ u Start meniju. Deinstalacija briše i dnevnik rada.</p></details>
+    </div>
+
+    <div class="final reveal">
+      <h2>Isprobajte VelePRO danas</h2>
+      <p class="sub" style="margin:0 auto 28px">Instalacija traje minut, a primjer podataka je spreman čim se program otvori.</p>
+      <div class="cta">
+        <a class="btn btn-primary js-download" href="https://github.com/Iggy988/velepro-demo/releases/latest/download/VelePRO-Demo-Setup-1.0.0.exe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+          Preuzmi demo za Windows
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo.png" alt="VelePRO" width="1220" height="262">
+    <nav>
+      <a href="https://github.com/Iggy988/velepro-demo/releases/latest/download/VelePRO-Demo-Setup-1.0.0.exe">Preuzmi demo</a>
+      <a href="Korisnicko-uputstvo.html" download>Korisničko uputstvo</a>
+      <a href="https://github.com/Iggy988/velepro-demo/releases">Sve verzije</a>
+    </nav>
+    <span>© 2026 VelePRO ERP</span>
+  </div>
+</footer>
+
+<script>
+  // Tour tabs
+  const tabs = document.querySelectorAll('.tabs button');
+  const img = document.getElementById('tour-img'), cap = document.getElementById('tour-cap'), title = document.getElementById('tour-title');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.setAttribute('aria-selected', x === t));
+    img.src = t.dataset.src; cap.textContent = t.dataset.cap; title.textContent = 'VelePRO ERP – ' + t.textContent;
+  }));
+  // Preload tour screenshots
+  tabs.forEach(t => { const i = new Image(); i.src = t.dataset.src; });
+
+  // Reveal on scroll
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12 }) : null;
+  document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+</script>
+</body>
+</html>
